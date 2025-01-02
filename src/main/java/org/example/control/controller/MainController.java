@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import org.example.control.Main;
@@ -15,6 +16,21 @@ public class MainController {
 
     @FXML
     private MenuBar mainMenuBar;
+
+    @FXML
+    private Label mainTitle;
+
+    // TODO: Change this variable to TRUE when the DB have employees
+    private boolean haveEmployees = true;
+
+    @FXML
+    public void initialize() {
+        if (!haveEmployees) {
+            mainTitle.setText("No hay empleados, añade empleados al sistema");
+        } else {
+            mainTitle.setText("Seleccione un empleado/a");
+        }
+    }
 
     @FXML
     protected void selectEmployee(ActionEvent event) {

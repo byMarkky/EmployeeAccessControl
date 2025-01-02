@@ -13,7 +13,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.control.controller.CompanyDataController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Datos de la empresa">
+      <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Datos de la empresa">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -33,7 +33,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="C.I.F:" GridPane.halignment="RIGHT">
+            <Label text="C.I.F/N.I.F:" GridPane.halignment="RIGHT">
                <font>
                   <Font size="14.0" />
                </font>
@@ -83,17 +83,17 @@
       </GridPane>
       <HBox alignment="CENTER" prefWidth="200.0" spacing="25.0">
          <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Guardar">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveData" text="Guardar">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="cleanButton" mnemonicParsing="false" onAction="#cleanData" text="Limpiar datos">
+            <Button fx:id="cleanButton" mnemonicParsing="false" onAction="#cleanData" text="Limpiar">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Cancelar">
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Cerrar">
                <font>
                   <Font size="13.0" />
                </font>

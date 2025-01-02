@@ -6,10 +6,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -37,25 +35,19 @@
       </MenuBar>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Label alignment="CENTER" text="Usuarios">
+            <Label fx:id="mainTitle" alignment="CENTER" text="Seleccione el usuario/a">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
       </HBox>
-      <GridPane VBox.vgrow="ALWAYS">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <TilePane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 1" TilePane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -63,7 +55,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 2">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -71,7 +63,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 3">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -79,7 +71,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 4">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -87,7 +79,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 5">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -95,7 +87,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#selectEmployee" text="Empleado/a 6">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -104,6 +96,6 @@
                </padding>
             </Button>
          </children>
-      </GridPane>
+      </TilePane>
    </children>
 </VBox>
