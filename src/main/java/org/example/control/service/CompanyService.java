@@ -10,12 +10,16 @@ public class CompanyService {
     private static final CompanyDao dao = new CompanyDao();
     private static final Logger log = LoggerFactory.getLogger(CompanyService.class);
 
+    /**
+     * Method to create the company
+     * @param company Company object
+     */
     public void createCompany(Company company) {
         if (dao.getByCif(company.getCif()) == null) {
-            dao.createCompany(company);
+            dao.create(company);
             log.debug("THERE IS NO COMPANY, CREATED ONE {}", company.getCif());
         } else {
-            dao.updateCompany(company);
+            dao.update(company);
             log.debug("UPDATE THE COMPANY {} DATA", company.getCif());
         }
     }
@@ -45,6 +49,11 @@ public class CompanyService {
         return company;
     }
 
+    /**
+     * Method to validate the company data before save it.
+     * @param company Company object
+     * @return True if the data is correct, false if not.
+     */
     public boolean validate(Company company) {
 
         // Don't have to validate the work center or the company name

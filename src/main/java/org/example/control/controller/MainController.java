@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import org.example.control.Main;
+import org.example.control.service.EmployeeService;
 
 import java.io.IOException;
 
@@ -20,16 +21,24 @@ public class MainController {
     @FXML
     private Label mainTitle;
 
-    // TODO: Change this variable to TRUE when the DB have employees
     private boolean haveEmployees = true;
+
+    private static final EmployeeService empService = new EmployeeService();
 
     @FXML
     public void initialize() {
+
+        loadEmployees();
+
         if (!haveEmployees) {
             mainTitle.setText("No hay empleados, añade empleados al sistema");
         } else {
             mainTitle.setText("Seleccione un empleado/a");
         }
+    }
+
+    private void loadEmployees() {
+        haveEmployees = empService.haveEmployees();
     }
 
     @FXML
@@ -56,7 +65,7 @@ public class MainController {
 
     @FXML
     protected void editEmployeesData(ActionEvent event) {
-        startEditWindow("employee-data-view.fxml", "Datos del empleado/a N");
+        startEditWindow("employee-data-view.fxml", "Datos de empleado");
     }
 
     private void startEditWindow(String fxml, String title) {

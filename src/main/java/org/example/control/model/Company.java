@@ -12,10 +12,10 @@ public class Company {
     @Column(name = "CIF", unique = true, nullable = false)
     private String cif;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String cAccount;    // Código de cuenta de cotización
 
     @Column

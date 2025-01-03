@@ -1,25 +1,64 @@
 package org.example.control.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "DNI", nullable = false, unique = true)
     private String dni;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column
     private String surname;
+
+    @Column(nullable = false, unique = true)
     private String affiliateNumber;
+
+    @Column(nullable = false)
     private String schedule;
+
+    @Column
     private String entryDate;
+
+    @Column
     private String exitDate;
-    private String afternoon_shift;
+
+    @Column
+    private String afternoonShift;
+
+    @Column
     private String afterEntry;
+
+    @Column
     private String afterExit;
+
+    @Column
     private byte overtime;
+
+    @Column
     private String note;
 
     public Employee() {
     }
 
+    public Employee(String dni, String name, String surname, String affiliateNumber, String schedule, String afternoonShift) {
+        this.dni = dni;
+        this.name = name;
+        this.surname = surname;
+        this.affiliateNumber = affiliateNumber;
+        this.schedule = schedule;
+        this.afternoonShift = afternoonShift;
+    }
+
     public Employee(String dni, String name, String surname, String affiliateNumber, String schedule, String entryDate,
-                    String exitDate, String afternoon_shift, String afterEntry, String afterExit, byte overtime, String note) {
+                    String exitDate, String afternoonShift, String afterEntry, String afterExit, byte overtime, String note) {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
@@ -27,11 +66,19 @@ public class Employee {
         this.schedule = schedule;
         this.entryDate = entryDate;
         this.exitDate = exitDate;
-        this.afternoon_shift = afternoon_shift;
+        this.afternoonShift = afternoonShift;
         this.afterEntry = afterEntry;
         this.afterExit = afterExit;
         this.overtime = overtime;
         this.note = note;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDni() {
@@ -90,12 +137,12 @@ public class Employee {
         this.exitDate = exitDate;
     }
 
-    public String getAfternoon_shift() {
-        return afternoon_shift;
+    public String getAfternoonShift() {
+        return afternoonShift;
     }
 
-    public void setAfternoon_shift(String afternoon_shift) {
-        this.afternoon_shift = afternoon_shift;
+    public void setAfternoonShift(String afternoonShift) {
+        this.afternoonShift = afternoonShift;
     }
 
     public String getAfterEntry() {
@@ -140,7 +187,7 @@ public class Employee {
                 ", schedule='" + schedule + '\'' +
                 ", entryDate='" + entryDate + '\'' +
                 ", exitDate='" + exitDate + '\'' +
-                ", afternoon_shift='" + afternoon_shift + '\'' +
+                ", afternoon_shift='" + afternoonShift + '\'' +
                 ", afterEntry='" + afterEntry + '\'' +
                 ", afterExit='" + afterExit + '\'' +
                 ", overtime=" + overtime +

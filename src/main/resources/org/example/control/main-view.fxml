@@ -22,7 +22,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#editEmployeesData" text="Editar Empleados" />
+              <MenuItem mnemonicParsing="false" onAction="#editEmployeesData" text="Agregar Empleado" />
                   <MenuItem mnemonicParsing="false" onAction="#editCompanyData" text="Editar datos de la empresa" />
             </items>
           </Menu>

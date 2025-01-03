@@ -12,7 +12,7 @@ public class CompanyDao {
 
     private static final Logger log = LoggerFactory.getLogger(CompanyDao.class);
 
-    public void createCompany(Company company) {
+    public void create(Company company) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
@@ -23,7 +23,7 @@ public class CompanyDao {
         session.close();
     }
 
-    public void updateCompany(Company company) {
+    public void update(Company company) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
 
@@ -72,7 +72,7 @@ public class CompanyDao {
         return company;
     }
 
-    public void deleteCompany(Company company) {
+    public void remove(Company company) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
 
