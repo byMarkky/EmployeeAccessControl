@@ -39,13 +39,26 @@ public class EmployeeDataController {
     @FXML
     private TextField surnameLabel;
 
+    private Employee employee = null;
+
     private static final EmployeeService empService = new EmployeeService();
 
     @FXML
     public void initialize() {
-        // Aquí usaremos las clases de servicio
-        // para coger los datos de la empresa
-        // y ponerlos en los campos
+    }
+
+    private void loadData() {
+        dniLabel.setText(employee.getDni());
+        nameLabel.setText(employee.getName());
+        surnameLabel.setText(employee.getSurname());
+        affiliateLabel.setText(employee.getAffiliateNumber());
+        morningLabel.setText(employee.getSchedule());
+        eveningLabel.setText(employee.getAfternoonShift());
+    }
+
+    protected void setEmployee(Employee employee) {
+        this.employee = employee;
+        loadData(); // Load the employee data in the labels
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {
@@ -57,7 +70,6 @@ public class EmployeeDataController {
 
     @FXML
     protected void saveData(ActionEvent event) {
-        Employee employee;
 
         if (dniLabel.getText().trim().isEmpty()) {
             showAlert("Datos incorrectos", "El DNI está vacío", Alert.AlertType.WARNING);
@@ -84,16 +96,24 @@ public class EmployeeDataController {
             return;
         }
 
-        employee = new Employee(dniLabel.getText().trim(), nameLabel.getText().trim(),
-                surnameLabel.getText().trim(), affiliateLabel.getText().trim(),
-                morningLabel.getText().trim(), eveningLabel.getText().trim());
+        if (this.employee == null) {
+            this.employee = new Employee(dniLabel.getText().trim(), nameLabel.getText().trim(),
+                    surnameLabel.getText().trim(), affiliateLabel.getText().trim(),
+                    morningLabel.getText().trim(), eveningLabel.getText().trim());
+        } else {
+            this.employee.setDni(dniLabel.getText());
+            this.employee.setName(nameLabel.getText());
+            this.employee.setAffiliateNumber(affiliateLabel.getText());
+            this.employee.setSchedule(morningLabel.getText());
+            this.employee.setAfternoonShift(eveningLabel.getText());
+        }
 
-        if (empService.validate(employee)) {
-            empService.createEmployee(employee);
+        if (empService.validate(this.employee)) {
+            empService.createEmployee(this.employee);
             showAlert("Datos correctos",
                     "Empleado guardado correctamente.\nSi no aparece en la pantalla principal, cierre y abra de nuevo el programa",
                     Alert.AlertType.CONFIRMATION);
-            System.out.println(employee);
+            System.out.println(this.employee);
         } else {
             showAlert("Datos incorrectos", "Los datos introducidos no son correctos, revíselos", Alert.AlertType.ERROR);
         }

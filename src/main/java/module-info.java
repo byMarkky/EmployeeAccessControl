@@ -16,4 +16,7 @@ module org.example.control {
     // This avoids a reflection error with the POJOs
     opens org.example.control.model to org.hibernate.orm.core;
 
+    // This avoids a warning about the classes in model package
+    exports org.example.control.model to org.hibernate.orm.core;
+
 }

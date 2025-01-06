@@ -57,18 +57,23 @@ public class Employee {
         this.afternoonShift = afternoonShift;
     }
 
-    public Employee(String dni, String name, String surname, String affiliateNumber, String schedule, String entryDate,
-                    String exitDate, String afternoonShift, String afterEntry, String afterExit, byte overtime, String note) {
+    public Employee(String dni, String name, String surname, String affiliateNumber, String schedule,
+                    String afternoonShift, byte overtime, String note) {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
         this.affiliateNumber = affiliateNumber;
         this.schedule = schedule;
-        this.entryDate = entryDate;
-        this.exitDate = exitDate;
+
+        String[] split = this.schedule.split("-");
+        this.entryDate = split[0].trim();
+        this.exitDate = split[1].trim();
         this.afternoonShift = afternoonShift;
-        this.afterEntry = afterEntry;
-        this.afterExit = afterExit;
+
+        String[] splitAfter = this.afternoonShift.split("-");
+        this.afterEntry = splitAfter[0].trim();
+        this.afterExit = splitAfter[1].trim();
+
         this.overtime = overtime;
         this.note = note;
     }
@@ -119,6 +124,8 @@ public class Employee {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+        this.entryDate = schedule.trim().split("-")[0];
+        this.exitDate = schedule.trim().split("-")[1];
     }
 
     public String getEntryDate() {

@@ -5,10 +5,25 @@ import org.example.control.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployeeService {
 
     private static final EmployeeDao dao = new EmployeeDao();
     private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
+
+    /**
+     * Method to get all the employees in the DB
+     * @return The employees and if there are no employees return an empty list
+     */
+    public List<Employee> getAll() {
+        List<Employee> employees = null;
+        employees = dao.getAll();
+        if (employees == null) return new ArrayList<>();
+
+        return employees;
+    }
 
     public void createEmployee(Employee employee) {
         if (dao.getByDni(employee.getDni()) == null) {

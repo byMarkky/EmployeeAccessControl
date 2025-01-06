@@ -56,7 +56,7 @@ public class EmployeeDao {
 
         try {
             // Crear la query usando HQL
-            String hql = "FROM Employee e WHERE e.DNI = :dni";
+            String hql = "FROM Employee e WHERE e.dni LIKE :dni";
             TypedQuery<Employee> query = session.createQuery(hql, Employee.class);
             query.setParameter("dni", dni);
 
@@ -68,8 +68,8 @@ public class EmployeeDao {
             session.close();
         }
 
-        if (employee != null) log.info("COMPANY WITH CIF {} FOUND", employee.getDni());
-        else log.info("COMPANY WITH CIF {} DO NOT EXISTS", dni);
+        if (employee != null) log.info("EMPLOYEE WITH DNI {} FOUND", employee.getDni());
+        else log.info("EMPLOYEE WITH DNI {} DO NOT EXISTS", dni);
 
         return employee;
     }
