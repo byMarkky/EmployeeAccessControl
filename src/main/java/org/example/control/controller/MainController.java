@@ -1,14 +1,12 @@
 package org.example.control.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.*;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -34,8 +32,6 @@ public class MainController {
 
     @FXML
     public void initialize() {
-
-
         if (empService.haveEmployees()) {
             mainTitle.setText("Seleccione un empleado/a");
             loadEmployees();
@@ -81,12 +77,19 @@ public class MainController {
     }
 
     @FXML
+    protected void close(ActionEvent event) { Platform.exit(); }
+
+    @FXML
     protected void editCompanyData(ActionEvent event) {
+        PasswordController.show();
+        if (PasswordController.valid()) return;
         startEditWindow("company-data-view.fxml", "Datos de la empresa");
     }
 
     @FXML
     protected void editEmployeesData(ActionEvent event) {
+        PasswordController.show();
+        if (PasswordController.valid()) return;
         startEditWindow("employee-data-view.fxml", "Datos de empleado");
     }
 

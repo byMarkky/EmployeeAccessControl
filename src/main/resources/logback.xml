@@ -9,6 +9,9 @@
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>log/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" />
+        <!-- daily rollover -->
+        <fileNamePattern>log/bim.%d{yyyy-MM-dd}.log</fileNamePattern>
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>

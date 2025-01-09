@@ -26,9 +26,6 @@ public class ScheduleController {
     private Button exitButton;
 
     @FXML
-    private Button showDataButton;
-
-    @FXML
     private Label employeeLabel;
 
     private Employee employee;
@@ -50,7 +47,19 @@ public class ScheduleController {
     }
 
     @FXML
+    protected void showEmployeeData() {
+        PasswordController.show();
+        if (PasswordController.valid()) return;
+        log.debug("SHOW EMPLOYEE ({} {}) DATA", employee.getName(), employee.getSurname());
+    }
+
+    @FXML
     protected void editEmployeesData(ActionEvent event) {
+
+        // Ask for admin password
+        PasswordController.show();
+        if (PasswordController.valid()) return;
+
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("employee-data-view.fxml"));
             Stage stage = new Stage();
