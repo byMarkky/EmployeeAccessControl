@@ -29,7 +29,7 @@ public class CompanyService {
      * @return null if not exists, else, the company
      */
     public Company getFirst() {
-        Company company = null;
+        Company company;
 
         company = dao.getById(1);
 
@@ -42,7 +42,7 @@ public class CompanyService {
      * @return null if not exists, else, the company
      */
     public Company getByCif(String cif) {
-        Company company = null;
+        Company company;
 
         company = dao.getByCif(cif);
 

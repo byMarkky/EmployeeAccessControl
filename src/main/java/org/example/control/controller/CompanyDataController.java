@@ -10,16 +10,10 @@ import org.example.control.service.CompanyService;
 public class CompanyDataController {
 
     @FXML
-    private Button cancelButton;
-
-    @FXML
     private TextField cccLabel;
 
     @FXML
     private TextField cifLabel;
-
-    @FXML
-    private Button cleanButton;
 
     @FXML
     private TextField centerLabel;
@@ -27,18 +21,12 @@ public class CompanyDataController {
     @FXML
     private TextField nameLabel;
 
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private Label titleLabel;
-
     private static final String emptyAlertTitle = "Campo vacío";
     private static final CompanyService companyService = new CompanyService();
 
     @FXML
-    public void initialize() throws InterruptedException {
-        // Aqui usaremos las clases de servicio
+    public void initialize() {
+        // Aquí usaremos las clases de servicio
         // para coger los datos de la empresa
         // y ponerlos en los campos
         loadData();
@@ -62,7 +50,7 @@ public class CompanyDataController {
     }
 
     @FXML
-    protected void saveData(ActionEvent event) {
+    protected void saveData() {
         Company company;
         if (cifLabel.getText().trim().isEmpty()) {
             showAlert(emptyAlertTitle, "El campo CIF esta vacío.", Alert.AlertType.WARNING);
@@ -94,7 +82,7 @@ public class CompanyDataController {
     }
 
     @FXML
-    protected void cleanData(ActionEvent event) {
+    protected void cleanData() {
         cifLabel.setText("");
         nameLabel.setText("");
         cccLabel.setText("");

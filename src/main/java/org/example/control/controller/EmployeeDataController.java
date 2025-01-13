@@ -16,12 +16,6 @@ public class EmployeeDataController {
     private TextField affiliateLabel;
 
     @FXML
-    private Button cancelButton;
-
-    @FXML
-    private Button cleanButton;
-
-    @FXML
     private TextField dniLabel;
 
     @FXML
@@ -32,9 +26,6 @@ public class EmployeeDataController {
 
     @FXML
     private TextField nameLabel;
-
-    @FXML
-    private Button saveButton;
 
     @FXML
     private TextField surnameLabel;
@@ -69,7 +60,7 @@ public class EmployeeDataController {
     }
 
     @FXML
-    protected void saveData(ActionEvent event) {
+    protected void saveData() {
 
         if (dniLabel.getText().trim().isEmpty()) {
             showAlert("Datos incorrectos", "El DNI está vacío", Alert.AlertType.WARNING);

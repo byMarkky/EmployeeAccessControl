@@ -1,10 +1,9 @@
 package org.example.control.controller;
 
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.control.Main;
@@ -18,12 +17,6 @@ import java.time.LocalDateTime;
 public class ScheduleController {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduleController.class);
-
-    @FXML
-    private Button entryButton;
-
-    @FXML
-    private Button exitButton;
 
     @FXML
     private Label employeeLabel;
@@ -47,18 +40,23 @@ public class ScheduleController {
     }
 
     @FXML
+    protected void close() {
+        Platform.exit();
+    }
+
+    @FXML
     protected void showEmployeeData() {
         PasswordController.show();
-        if (PasswordController.valid()) return;
+        if (PasswordController.isNotValid()) return;
         log.debug("SHOW EMPLOYEE ({} {}) DATA", employee.getName(), employee.getSurname());
     }
 
     @FXML
-    protected void editEmployeesData(ActionEvent event) {
+    protected void editEmployeesData() {
 
         // Ask for admin password
         PasswordController.show();
-        if (PasswordController.valid()) return;
+        if (PasswordController.isNotValid()) return;
 
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("employee-data-view.fxml"));
@@ -78,6 +76,11 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Method to load an employee in this class
+     * so can be used.
+     * @param employee Employee selected from the database
+     */
     protected void setEmployee(Employee employee) {
         this.employee = employee;
         if (employee != null) employeeLabel.setText(employee.getName() + " " + employee.getSurname());

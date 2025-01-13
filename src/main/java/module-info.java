@@ -6,7 +6,8 @@ module org.example.control {
     requires mysql.connector.j;
     requires org.hibernate.orm.core;
 
-    requires java.naming;  // Java Naming and Directory Interface (JNDI) API.
+    requires java.naming;
+    requires com.google.common;  // Java Naming and Directory Interface (JNDI) API.
 
     opens org.example.control to javafx.fxml;
     exports org.example.control;

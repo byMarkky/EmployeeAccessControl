@@ -1,0 +1,20 @@
+<hibernate-configuration>
+    <session-factory>
+        <!--  Configuración de conexión a la base de datos  -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/access_control</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"/>
+        <!--  Dialecto de Hibernate  -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--  Configuración adicional  -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--  Clases anotadas  -->
+        <mapping class="org.example.control.model.Company"/>
+        <mapping class="org.example.control.model.Employee"/>
+
+
+    </session-factory>
+</hibernate-configuration>

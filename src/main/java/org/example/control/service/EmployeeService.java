@@ -18,7 +18,7 @@ public class EmployeeService {
      * @return The employees and if there are no employees return an empty list
      */
     public List<Employee> getAll() {
-        List<Employee> employees = null;
+        List<Employee> employees;
         employees = dao.getAll();
         if (employees == null) return new ArrayList<>();
 
@@ -45,9 +45,7 @@ public class EmployeeService {
 
         if (employee.getSchedule().isEmpty() || employee.getSchedule() == null) return false;
 
-        if (employee.getAffiliateNumber().length() != 14) return false;
-
-        return true;
+        return employee.getAffiliateNumber().length() == 14;
     }
 
     public boolean haveEmployees() {

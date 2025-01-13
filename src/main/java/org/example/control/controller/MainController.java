@@ -20,9 +20,6 @@ import java.util.List;
 public class MainController {
 
     @FXML
-    private MenuBar mainMenuBar;
-
-    @FXML
     private Label mainTitle;
 
     @FXML
@@ -60,6 +57,15 @@ public class MainController {
     }
 
     @FXML
+    protected void setNewPassword() {
+        // TODO: Check for empty spaces and other things
+        PasswordController.show();
+        if (PasswordController.isNotValid()) return;
+
+        SetPassController.show();
+    }
+
+    @FXML
     protected void selectEmployee(ActionEvent event, Employee employee) {
         try {
             Button button = (Button) event.getSource();
@@ -77,19 +83,19 @@ public class MainController {
     }
 
     @FXML
-    protected void close(ActionEvent event) { Platform.exit(); }
+    protected void close() { Platform.exit(); }
 
     @FXML
-    protected void editCompanyData(ActionEvent event) {
+    protected void editCompanyData() {
         PasswordController.show();
-        if (PasswordController.valid()) return;
+        if (PasswordController.isNotValid()) return;
         startEditWindow("company-data-view.fxml", "Datos de la empresa");
     }
 
     @FXML
-    protected void editEmployeesData(ActionEvent event) {
+    protected void editEmployeesData() {
         PasswordController.show();
-        if (PasswordController.valid()) return;
+        if (PasswordController.isNotValid()) return;
         startEditWindow("employee-data-view.fxml", "Datos de empleado");
     }
 
