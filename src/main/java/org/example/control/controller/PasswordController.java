@@ -34,7 +34,7 @@ public class PasswordController {
     private PasswordField passField;
 
     private static String passwd = "";
-    private static final byte PASSWD_MAX_LENGTH = 5;
+    private static final byte PASSWD_MIN_LENGTH = 5;
 
     @FXML
     protected void check(ActionEvent event) {
@@ -59,7 +59,7 @@ public class PasswordController {
     }
 
     private boolean validate() {
-        return passwd.length() >= PASSWD_MAX_LENGTH && hashString(passwd).equals(getPasswordProperty());
+        return passwd.length() >= PASSWD_MIN_LENGTH && hashString(passwd).equals(getPasswordProperty());
     }
 
     /**
@@ -124,7 +124,7 @@ public class PasswordController {
      */
     protected static boolean isNotValid() {
         String coded = hashString(passwd);
-        boolean state = passwd.length() >= PASSWD_MAX_LENGTH && coded.equals(getPasswordProperty());
+        boolean state = passwd.length() >= PASSWD_MIN_LENGTH && coded.equals(getPasswordProperty());
 
         // This prevents to access the target
         // window if the password window is closed

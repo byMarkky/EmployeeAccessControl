@@ -25,6 +25,8 @@ public class SetPassController {
     @FXML
     private PasswordField repPassField;
 
+    private static final String FAIL_PASSWD_TITLE = "Contraseña Incorrecta";
+
     @FXML
     protected void cancel(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -37,12 +39,17 @@ public class SetPassController {
         if (repPassField == null || repPassField.getText().isEmpty()) return;
         if (passField == null || passField.getText().isEmpty()) return;
 
+        if (passField.getText().trim().isEmpty() || passField.getText().trim().isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, FAIL_PASSWD_TITLE,
+                    "Contraseña con espacios",
+                    "Asegura que la contraseña no contenga espacios ni este vacía.");
+            return;
+        }
+
         if (!repPassField.getText().equals(passField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Contraseña errónea");
-            alert.setHeaderText("Las contraseñas no coinciden");
-            alert.setContentText("Confirme que las contraseñas con iguales.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, FAIL_PASSWD_TITLE,
+                    "Las contraseñas no coinciden",
+                    "Confirme que las contraseñas son iguales");
             return;
         }
 
@@ -53,6 +60,14 @@ public class SetPassController {
             log.error("NEW PASSWORD CAN NOT BEEN SAVED");
         }
 
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String header, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     private Boolean save(String newPassword) {

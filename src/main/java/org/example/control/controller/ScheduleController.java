@@ -8,10 +8,12 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.example.control.Main;
 import org.example.control.model.Employee;
+import org.example.control.model.Register;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ScheduleController {
@@ -29,14 +31,14 @@ public class ScheduleController {
 
     @FXML
     protected void entry() {
-        log.info("ENTRY DATE {}", this.employee.getEntryDate());
-        log.info("ENTRY DATE OF {} AT {}", this.employee.getDni(), LocalDateTime.now());
+        Register register = new Register();
+        register.setEntry(LocalDateTime.of(LocalDate.now(), employee.getEntryDate()));
+        log.info(register.toString());
     }
 
     @FXML
     protected void exit() {
-        log.info("EXIT DATE {}", this.employee.getExitDate());
-        log.info("EXIT DATE OF {} AT {}", this.employee.getDni(), LocalDateTime.now());
+        log.info("EMPLOYEE {} EXITED AT {}", employee.getDni(), LocalDateTime.now().toLocalTime());
     }
 
     @FXML

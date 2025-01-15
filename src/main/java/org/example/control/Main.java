@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.control.dao.EmployeeDao;
-import org.example.control.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -2,6 +2,8 @@ package org.example.control.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
+
 @Entity
 public class Employee {
 
@@ -25,19 +27,19 @@ public class Employee {
     private String schedule;
 
     @Column
-    private String entryDate;
+    private LocalTime entryDate;
 
     @Column
-    private String exitDate;
+    private LocalTime exitDate;
 
     @Column
     private String afternoonShift;
 
     @Column
-    private String afterEntry;
+    private LocalTime afterEntry;
 
     @Column
-    private String afterExit;
+    private LocalTime afterExit;
 
     @Column
     private byte overtime;
@@ -53,8 +55,8 @@ public class Employee {
         this.name = name;
         this.surname = surname;
         this.affiliateNumber = affiliateNumber;
-        this.schedule = schedule;
-        this.afternoonShift = afternoonShift;
+        setSchedule(schedule);
+        setAfternoonShift(afternoonShift);
     }
 
     public Employee(String dni, String name, String surname, String affiliateNumber, String schedule,
@@ -66,13 +68,9 @@ public class Employee {
         this.schedule = schedule;
 
         String[] split = this.schedule.split("-");
-        this.entryDate = split[0].trim();
-        this.exitDate = split[1].trim();
-        this.afternoonShift = afternoonShift;
-
-        String[] splitAfter = this.afternoonShift.split("-");
-        this.afterEntry = splitAfter[0].trim();
-        this.afterExit = splitAfter[1].trim();
+        this.entryDate = LocalTime.parse(split[0].trim());
+        this.exitDate = LocalTime.parse(split[1].trim());
+        setAfternoonShift(afternoonShift);
 
         this.overtime = overtime;
         this.note = note;
@@ -124,23 +122,26 @@ public class Employee {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
-        this.entryDate = schedule.trim().split("-")[0];
-        this.exitDate = schedule.trim().split("-")[1];
+        String[] splited = schedule.split("-");
+        String[] entry = splited[0].split(":");
+        String[] exit = splited[1].split(":");
+        this.entryDate = LocalTime.of(Integer.parseInt(entry[0]), Integer.parseInt(entry[1]), 0);
+        this.exitDate = LocalTime.of(Integer.parseInt(exit[0]), Integer.parseInt(exit[1]), 0);
     }
 
-    public String getEntryDate() {
+    public LocalTime getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(String entryDate) {
+    public void setEntryDate(LocalTime entryDate) {
         this.entryDate = entryDate;
     }
 
-    public String getExitDate() {
+    public LocalTime getExitDate() {
         return exitDate;
     }
 
-    public void setExitDate(String exitDate) {
+    public void setExitDate(LocalTime exitDate) {
         this.exitDate = exitDate;
     }
 
@@ -150,21 +151,26 @@ public class Employee {
 
     public void setAfternoonShift(String afternoonShift) {
         this.afternoonShift = afternoonShift;
+        String[] splited = this.afternoonShift.split("-");
+        String[] entry = splited[0].split(":");
+        String[] exit = splited[1].split(":");
+        this.afterEntry = LocalTime.of(Integer.parseInt(entry[0]), Integer.parseInt(entry[1]), 0);
+        this.afterExit = LocalTime.of(Integer.parseInt(exit[0]), Integer.parseInt(exit[1]), 0);
     }
 
-    public String getAfterEntry() {
+    public LocalTime getAfterEntry() {
         return afterEntry;
     }
 
-    public void setAfterEntry(String afterEntry) {
+    public void setAfterEntry(LocalTime afterEntry) {
         this.afterEntry = afterEntry;
     }
 
-    public String getAfterExit() {
+    public LocalTime getAfterExit() {
         return afterExit;
     }
 
-    public void setAfterExit(String afterExit) {
+    public void setAfterExit(LocalTime afterExit) {
         this.afterExit = afterExit;
     }
 
