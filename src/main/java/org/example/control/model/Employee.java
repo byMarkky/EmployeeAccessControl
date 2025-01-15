@@ -47,6 +47,10 @@ public class Employee {
     @Column
     private String note;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     public Employee() {
     }
 
@@ -188,6 +192,14 @@ public class Employee {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override

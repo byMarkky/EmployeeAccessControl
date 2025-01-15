@@ -2,6 +2,8 @@ package org.example.control.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Company {
 
@@ -20,6 +22,9 @@ public class Company {
 
     @Column
     private String workCenter;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+    private List<Employee> employeeList;
 
     public Company() {
     }
@@ -69,6 +74,14 @@ public class Company {
 
     public void setWorkCenter(String workCenter) {
         this.workCenter = workCenter;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     @Override

@@ -13,12 +13,15 @@ import javafx.stage.Stage;
 import org.example.control.Main;
 import org.example.control.model.Employee;
 import org.example.control.service.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
 
 public class MainController {
 
+    private static final Logger log = LoggerFactory.getLogger(MainController.class);
     @FXML
     private Label mainTitle;
 
@@ -58,7 +61,6 @@ public class MainController {
 
     @FXML
     protected void setNewPassword() {
-        // TODO: Check for empty spaces and other things
         PasswordController.show();
         if (PasswordController.isNotValid()) return;
 
